@@ -28,7 +28,7 @@ public class User implements Serializable {
 	private String email;
 	private String phone;
 	private LocalDate birthDate;
-	private String passaword;
+	private String password;
 
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>();
@@ -37,14 +37,14 @@ public class User implements Serializable {
 
 	}
 
-	public User(Long id, String name, String email, String phone, LocalDate birthDate, String passaword) {
+	public User(Long id, String name, String email, String phone, LocalDate birthDate, String password) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.birthDate = birthDate;
-		this.passaword = passaword;
+		this.password = password;
 	}
 
 	public Long getId() {
@@ -87,12 +87,12 @@ public class User implements Serializable {
 		this.birthDate = birthDate;
 	}
 
-	public String getPassaword() {
-		return passaword;
+	public String getpassword() {
+		return password;
 	}
 
-	public void setPassaword(String passaword) {
-		this.passaword = passaword;
+	public void setpassword(String password) {
+		this.password = password;
 	}
 
 	public static long getSerialversionuid() {
