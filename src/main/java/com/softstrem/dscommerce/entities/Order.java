@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -37,7 +38,7 @@ public class Order implements Serializable {
 
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
 	private Payment payment;
-	
+
 	@OneToMany(mappedBy = "id.order")
 	private Set<OrderItem> items = new HashSet<>();
 
@@ -102,8 +103,25 @@ public class Order implements Serializable {
 		return items;
 	}
 
-	public List<Product> getProduct(){
+	public List<Product> getProduct() {
 		return items.stream().map(x -> x.getProduct()).toList();
 	}
-	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Order other = (Order) obj;
+		return Objects.equals(id, other.id);
+	}
+
 }
