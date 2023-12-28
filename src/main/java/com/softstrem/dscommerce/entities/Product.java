@@ -31,6 +31,7 @@ public class Product implements Serializable {
 
 	@Column(columnDefinition = "TEXT")
 	private String description;
+	
 	private Double price;
 	private String imgUrl;
 
