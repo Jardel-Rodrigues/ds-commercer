@@ -2,7 +2,6 @@ package com.softstrem.dscommerce.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -19,6 +18,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_product")
+
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +31,7 @@ public class Product implements Serializable {
 
 	@Column(columnDefinition = "TEXT")
 	private String description;
-	
+
 	private Double price;
 	private String imgUrl;
 
@@ -44,15 +44,6 @@ public class Product implements Serializable {
 
 	public Product() {
 
-	}
-
-	public Product(Long id, String name, String description, Double price, String imgUrl) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.price = price;
-		this.imgUrl = imgUrl;
 	}
 
 	public Long getId() {
@@ -95,10 +86,6 @@ public class Product implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public Set<Category> getCategories() {
 		return categories;
 	}
@@ -107,8 +94,8 @@ public class Product implements Serializable {
 		return items;
 	}
 
-	public List<Order> getOrder() {
-		return items.stream().map(x -> x.getOrder()).toList();
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
