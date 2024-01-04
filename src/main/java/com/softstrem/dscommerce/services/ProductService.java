@@ -1,7 +1,5 @@
 package com.softstrem.dscommerce.services;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,10 +18,8 @@ public class ProductService {
 
 	@Transactional(readOnly = true)
 	public ProductDTO findById(Long id) {
-		Optional<Product> result = repository.findById(id);
-		Product product = result.get();
-		ProductDTO dto = new ProductDTO(product);
-		return dto;
+		Product product = repository.findById(id).get();
+		return new ProductDTO(product);
 
 	}
 
@@ -42,13 +38,19 @@ public class ProductService {
 		return new ProductDTO(entity);
 
 	}
-	
+
 	@Transactional
 	public ProductDTO update(Long id, ProductDTO dto) {
-		Product entity = repository.getReferenceById(id) ;
+		Product entity = repository.getReferenceById(id);
 		copyDtoToEntity(dto, entity);
 		entity = repository.save(entity);
 		return new ProductDTO(entity);
+
+	}
+
+	@Transactional
+	public void delete(Long id) {
+		repository.deleteById(id);
 
 	}
 
@@ -57,7 +59,7 @@ public class ProductService {
 		entity.setDescription(dto.getDescription());
 		entity.setPrice(dto.getPrice());
 		entity.setImgUrl(dto.getImgUrl());
-		
+
 	}
 
 }
