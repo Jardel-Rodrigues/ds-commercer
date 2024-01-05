@@ -18,7 +18,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.softstrem.dscommerce.dto.ProductDTO;
 import com.softstrem.dscommerce.services.ProductService;
-import com.softstrem.dscommerce.services.exceptions.ResourceNotFoundException;
 
 @RestController
 @RequestMapping(value = "/products")
@@ -29,7 +28,7 @@ public class ProductContreller {
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
-		ProductDTO dto = service.findById(id).orElseThrow(() -> new ResourceNotFoundException("Produto não encontrado"));
+		ProductDTO dto = service.findById(id);
 		return ResponseEntity.ok(dto);
 
 	}
