@@ -1,11 +1,12 @@
 package com.softstrem.dscommerce.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.ResourceAccessException;
 
 import com.softstrem.dscommerce.dto.ProductDTO;
 import com.softstrem.dscommerce.entities.Product;
@@ -18,9 +19,8 @@ public class ProductService {
 	private ProductRepository repository;
 
 	@Transactional(readOnly = true)
-	public ProductDTO findById(Long id) {
-		Product product = repository.findById(id).orElseThrow(() -> new ResourceAccessException("Recurso não encontrado"));
-		return new ProductDTO(product);
+	public Optional<ProductDTO> findById(Long id) {
+		return repository.findById(id).map(product -> new ProductDTO(product));
 
 	}
 
