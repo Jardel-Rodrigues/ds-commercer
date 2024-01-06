@@ -1,17 +1,31 @@
 package com.softstrem.dscommerce.dto;
 
+import java.math.BigDecimal;
+
 import com.softstrem.dscommerce.entities.Product;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 public class ProductDTO {
 
 	private Long id;
+	
+	@Size(min = 3, max = 80, message = "Nome precisa ter de 3 a 80 caracteres")
+	@NotBlank(message = "Campo requerido")
 	private String name;
+	
+	@Size(min = 10, message = "Descrição precisa ter no minimo 10 caracteres")
+	@NotBlank(message = "Campo requerido")
 	private String description;
-	private Double price;
+	
+	@Positive(message = "O preço deve ser positivo")
+	private BigDecimal price;
+	
 	private String imgUrl;
 
-
-	public ProductDTO(Long id, String name, String description, Double price, String imgUrl) {
+	public ProductDTO(Long id, String name, String description, BigDecimal price, String imgUrl) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -40,7 +54,7 @@ public class ProductDTO {
 		return description;
 	}
 
-	public Double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 

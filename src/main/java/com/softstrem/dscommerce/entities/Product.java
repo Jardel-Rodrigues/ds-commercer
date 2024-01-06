@@ -1,6 +1,7 @@
 package com.softstrem.dscommerce.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -32,7 +33,7 @@ public class Product implements Serializable {
 	@Column(columnDefinition = "TEXT")
 	private String description;
 
-	private Double price;
+	private BigDecimal price;
 	private String imgUrl;
 
 	@ManyToMany
@@ -70,11 +71,11 @@ public class Product implements Serializable {
 		this.description = description;
 	}
 
-	public Double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
