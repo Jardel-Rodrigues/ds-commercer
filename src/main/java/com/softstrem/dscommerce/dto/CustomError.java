@@ -6,14 +6,14 @@ public class CustomError {
 
 	private Instant timestamp;
 	private Integer status;
-	private String message;
+	private String messege;
 	private String path;
 
-	public CustomError(Instant timestamp, Integer status, String message, String path) {
+	public CustomError(Instant timestamp, Integer status, String messege, String path) {
 		super();
 		this.timestamp = timestamp;
 		this.status = status;
-		this.message = message;
+		this.messege = messege;
 		this.path = path;
 	}
 
@@ -25,8 +25,8 @@ public class CustomError {
 		return status;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getMessege() {
+		return messege;
 	}
 
 	public String getPath() {

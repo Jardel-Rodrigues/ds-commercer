@@ -22,7 +22,6 @@ public class ProductDTO {
 	
 	@Positive(message = "O preço deve ser positivo")
 	private BigDecimal price;
-	
 	private String imgUrl;
 
 	public ProductDTO(Long id, String name, String description, BigDecimal price, String imgUrl) {
