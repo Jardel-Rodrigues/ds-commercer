@@ -24,7 +24,8 @@ public class ProductService {
 
 	@Transactional(readOnly = true)
 	public ProductDTO findById(Long id) {
-		return repository.findById(id).map(product -> new ProductDTO(product)).orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado"));
+		return repository.findById(id).map(product -> new ProductDTO(product))
+				.orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado"));
 
 	}
 
@@ -51,7 +52,7 @@ public class ProductService {
 			copyDtoToEntity(dto, entity);
 			entity = repository.save(entity);
 			return new ProductDTO(entity);
-
+			
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Recurso não encontrato");
 		}
