@@ -1,24 +1,93 @@
-create table dscommerce.tb_category (id bigserial not null, name varchar(255), primary key (id));
-create table dscommerce.tb_order (status smallint check (status between 0 and 4), client_id bigint, id bigserial not null, moment TIMESTAMP WITHOUT TIME ZONE, primary key (id));
-create table dscommerce.tb_order_item (price float(53), quantity integer, order_id bigint not null, product_id bigint not null, primary key (order_id, product_id));
-create table dscommerce.tb_payment (moment TIMESTAMP WITHOUT TIME ZONE, order_id bigint not null, primary key (order_id));
-create table dscommerce.tb_product (price numeric(38,2), id bigserial not null, description TEXT, img_url varchar(255), name varchar(255), primary key (id));
-create table dscommerce.tb_product_category (category_id bigint not null, product_id bigint not null, primary key (category_id, product_id));
-create table dscommerce.tb_user (birth_date date, id bigserial not null, email varchar(255) unique, name varchar(255), password varchar(255), phone varchar(255), primary key (id));
+CREATE SCHEMA dscommerce;
 
-alter table if exists dscommerce.tb_order add constraint FKi0x0rv7d65vsceuy33km9567n foreign key (client_id) references dscommerce.tb_user;
-alter table if exists dscommerce.tb_order_item add constraint FK4h5xid5qehset7qwe5l9c997x foreign key (product_id) references dscommerce.tb_product;
-alter table if exists dscommerce.tb_order_item add constraint FKgeobgl2xu916he8vhljktwxnx foreign key (order_id) references dscommerce.tb_order;
-alter table if exists dscommerce.tb_payment add constraint FKokaf4il2cwit4h780c25dv04r foreign key (order_id) references dscommerce.tb_order;
-alter table if exists dscommerce.tb_product_category add constraint FK5r4sbavb4nkd9xpl0f095qs2a foreign key (category_id) references dscommerce.tb_category;
-alter table if exists dscommerce.tb_product_category add constraint FKgbof0jclmaf8wn2alsoexxq3u foreign key (product_id) references dscommerce.tb_product;
+    create table dscommerce.tb_category (
+        id bigserial not null,
+        name varchar(255),
+        primary key (id)
+    );
 
+    create table dscommerce.tb_order (
+        status smallint check (status between 0 and 4),
+        client_id bigint,
+        id bigserial not null,
+        moment TIMESTAMP WITHOUT TIME ZONE,
+        primary key (id)
+    );
+
+    create table dscommerce.tb_order_item (
+        price float(53),
+        quantity integer,
+        order_id bigint not null,
+        product_id bigint not null,
+        primary key (order_id, product_id)
+    );
+
+    create table dscommerce.tb_payment (
+        moment TIMESTAMP WITHOUT TIME ZONE,
+        order_id bigint not null,
+        primary key (order_id)
+    );
+
+    create table dscommerce.tb_product (
+        price numeric(38,2),
+        id bigserial not null,
+        description TEXT,
+        img_url varchar(255),
+        name varchar(255),
+        primary key (id)
+    );
+
+    create table dscommerce.tb_product_category (
+        category_id bigint not null,
+        product_id bigint not null,
+        primary key (category_id, product_id)
+    );
+
+    create table dscommerce.tb_user (
+        birth_date date,
+        id bigserial not null,
+        email varchar(255) unique,
+        name varchar(255),
+        password varchar(255),
+        phone varchar(255),
+        primary key (id)
+    );
+
+    alter table if exists dscommerce.tb_order 
+       add constraint FKi0x0rv7d65vsceuy33km9567n 
+       foreign key (client_id) 
+       references dscommerce.tb_user;
+
+    alter table if exists dscommerce.tb_order_item 
+       add constraint FK4h5xid5qehset7qwe5l9c997x 
+       foreign key (product_id) 
+       references dscommerce.tb_product;
+
+    alter table if exists dscommerce.tb_order_item 
+       add constraint FKgeobgl2xu916he8vhljktwxnx 
+       foreign key (order_id) 
+       references dscommerce.tb_order;
+
+    alter table if exists dscommerce.tb_payment 
+       add constraint FKokaf4il2cwit4h780c25dv04r 
+       foreign key (order_id) 
+       references dscommerce.tb_order;
+
+    alter table if exists dscommerce.tb_product_category 
+       add constraint FK5r4sbavb4nkd9xpl0f095qs2a 
+       foreign key (category_id) 
+       references dscommerce.tb_category;
+
+    alter table if exists dscommerce.tb_product_category 
+       add constraint FKgbof0jclmaf8wn2alsoexxq3u 
+       foreign key (product_id) 
+       references dscommerce.tb_product;
+	   
 INSERT INTO dscommerce.tb_category(name) VALUES ('Livros');
 INSERT INTO dscommerce.tb_category(name) VALUES ('Eletrônicos');
 INSERT INTO dscommerce.tb_category(name) VALUES ('Computadores');
-
-INSERT INTO dscommerce.tb_product (name, price, description, img_url) VALUES ('Smart TV', 2190.0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/2-big.jpg');
 INSERT INTO dscommerce.tb_product (name, price, description, img_url) VALUES ('The Lord of the Rings', 90.5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/1-big.jpg');
+INSERT INTO dscommerce.tb_product (name, price, description, img_url) VALUES ('Smart TV', 2190.0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/2-big.jpg');
 INSERT INTO dscommerce.tb_product (name, price, description, img_url) VALUES ('Macbook Pro', 1250.0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/3-big.jpg');
 INSERT INTO dscommerce.tb_product (name, price, description, img_url) VALUES ('PC Gamer', 1200.0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/4-big.jpg');
 INSERT INTO dscommerce.tb_product (name, price, description, img_url) VALUES ('Rails for Dummies', 100.99, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/5-big.jpg');
@@ -42,7 +111,6 @@ INSERT INTO dscommerce.tb_product (name, price, description, img_url) VALUES ('P
 INSERT INTO dscommerce.tb_product (name, price, description, img_url) VALUES ('PC Gamer Min', 2250.0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/23-big.jpg');
 INSERT INTO dscommerce.tb_product (name, price, description, img_url) VALUES ('PC Gamer Boo', 2350.0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/24-big.jpg');
 INSERT INTO dscommerce.tb_product (name, price, description, img_url) VALUES ('PC Gamer Foo', 4170.0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/25-big.jpg');
-
 INSERT INTO dscommerce.tb_product_category (product_id, category_id) VALUES (1, 1);
 INSERT INTO dscommerce.tb_product_category (product_id, category_id) VALUES (2, 2);
 INSERT INTO dscommerce.tb_product_category (product_id, category_id) VALUES (2, 3);
@@ -69,18 +137,14 @@ INSERT INTO dscommerce.tb_product_category (product_id, category_id) VALUES (22,
 INSERT INTO dscommerce.tb_product_category (product_id, category_id) VALUES (23, 3);
 INSERT INTO dscommerce.tb_product_category (product_id, category_id) VALUES (24, 3);
 INSERT INTO dscommerce.tb_product_category (product_id, category_id) VALUES (25, 3);
-
 INSERT INTO dscommerce.tb_user (name, email, phone, password, birth_date) VALUES ('Maria Brown', 'maria@gmail.com', '988888888', '123456', '2001-07-25');
 INSERT INTO dscommerce.tb_user (name, email, phone, password, birth_date) VALUES ('Alex Green', 'alex@gmail.com', '977777777', '123456', '1987-12-13');
-
 INSERT INTO dscommerce.tb_order (moment, status, client_id) VALUES (TIMESTAMP WITH TIME ZONE '2022-07-25T13:00:00Z', 1, 1);
 INSERT INTO dscommerce.tb_order (moment, status, client_id) VALUES (TIMESTAMP WITH TIME ZONE '2022-07-29T15:50:00Z', 3, 2);
 INSERT INTO dscommerce.tb_order (moment, status, client_id) VALUES (TIMESTAMP WITH TIME ZONE '2022-08-03T14:20:00Z', 0, 1);
-
 INSERT INTO dscommerce.tb_order_item (order_id, product_id, quantity, price) VALUES (1, 1, 2, 90.5);
 INSERT INTO dscommerce.tb_order_item (order_id, product_id, quantity, price) VALUES (1, 3, 1, 1250.0);
 INSERT INTO dscommerce.tb_order_item (order_id, product_id, quantity, price) VALUES (2, 3, 1, 1250.0);
 INSERT INTO dscommerce.tb_order_item (order_id, product_id, quantity, price) VALUES (3, 1, 1, 90.5);
-
 INSERT INTO dscommerce.tb_payment (order_id, moment) VALUES (1, TIMESTAMP WITH TIME ZONE '2022-07-25T15:00:00Z');
 INSERT INTO dscommerce.tb_payment (order_id, moment) VALUES (2, TIMESTAMP WITH TIME ZONE '2022-07-30T11:00:00Z');
