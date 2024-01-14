@@ -1,4 +1,4 @@
-package com.softstrem.dscommerce.dto;
+package com.softstrem.dscommerce.dtos;
 
 import java.math.BigDecimal;
 
@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
-public class ProductDTO {
+public class ProductDto {
 
 	private Long id;
 	
@@ -24,7 +24,7 @@ public class ProductDTO {
 	private BigDecimal price;
 	private String imgUrl;
 
-	public ProductDTO(Long id, String name, String description, BigDecimal price, String imgUrl) {
+	public ProductDto(Long id, String name, String description, BigDecimal price, String imgUrl) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -33,7 +33,7 @@ public class ProductDTO {
 		this.imgUrl = imgUrl;
 	}
 	
-	public ProductDTO(Product entity) {
+	public ProductDto(Product entity) {
 		id = entity.getId();
 		name = entity.getName();
 		description = entity.getDescription();

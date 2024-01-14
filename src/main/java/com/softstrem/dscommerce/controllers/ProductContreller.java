@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.softstrem.dscommerce.dto.ProductDTO;
+import com.softstrem.dscommerce.dtos.ProductDto;
 import com.softstrem.dscommerce.services.ProductService;
 
 import jakarta.validation.Valid;
@@ -29,20 +29,20 @@ public class ProductContreller {
 	private ProductService service;
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
-		ProductDTO dto = service.findById(id);
+	public ResponseEntity<ProductDto> findById(@PathVariable Long id) {
+		ProductDto dto = service.findById(id);
 		return ResponseEntity.ok(dto);
 
 	}
 
 	@GetMapping
-	public ResponseEntity<Page<ProductDTO>> findAll(Pageable pageable) {
-		Page<ProductDTO> dto = service.findAll(pageable);
+	public ResponseEntity<Page<ProductDto>> findAll(Pageable pageable) {
+		Page<ProductDto> dto = service.findAll(pageable);
 		return ResponseEntity.ok(dto);
 	}
 
 	@PostMapping
-	public ResponseEntity<ProductDTO> insert(@Valid @RequestBody ProductDTO dto) {
+	public ResponseEntity<ProductDto> insert(@Valid @RequestBody ProductDto dto) {
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
@@ -50,7 +50,7 @@ public class ProductContreller {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<ProductDTO> update(@PathVariable Long id, @Valid @RequestBody ProductDTO dto) {
+	public ResponseEntity<ProductDto> update(@PathVariable Long id, @Valid @RequestBody ProductDto dto) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok(dto);
 

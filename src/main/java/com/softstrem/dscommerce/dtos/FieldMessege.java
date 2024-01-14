@@ -1,4 +1,4 @@
-package com.softstrem.dscommerce.dto;
+package com.softstrem.dscommerce.dtos;
 
 public class FieldMessege {
 
