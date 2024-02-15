@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.1</version>
+		<version>3.2.2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.softstrem</groupId>
@@ -53,8 +53,7 @@
 
 		<dependency>
 			<groupId>jakarta.validation</groupId>
-			<artifactId>jakarta.validation-api</artifactId>
-			<version>3.0.2</version><!--$NO-MVN-MAN-VER$-->
+			<artifactId>jakarta.validation-api</artifactId><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 
 		<dependency>
