@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
-public class ProductDto {
+public class ProductDTO {
 
 	private Long id;
 	
@@ -24,7 +24,7 @@ public class ProductDto {
 	private BigDecimal price;
 	private String imgUrl;
 
-	public ProductDto(Long id, String name, String description, BigDecimal price, String imgUrl) {
+	public ProductDTO(Long id, String name, String description, BigDecimal price, String imgUrl) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -33,7 +33,7 @@ public class ProductDto {
 		this.imgUrl = imgUrl;
 	}
 	
-	public ProductDto(Product entity) {
+	public ProductDTO(Product entity) {
 		id = entity.getId();
 		name = entity.getName();
 		description = entity.getDescription();

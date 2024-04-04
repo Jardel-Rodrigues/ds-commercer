@@ -1,11 +1,11 @@
 package com.softstrem.dscommerce.dtos;
 
-public class FieldMessege {
+public class FieldMessegeDTO {
 
 	private String fieldName;
 	private String messege;
 
-	public FieldMessege(String fieldName, String messege) {
+	public FieldMessegeDTO(String fieldName, String messege) {
 		super();
 		this.fieldName = fieldName;
 		this.messege = messege;

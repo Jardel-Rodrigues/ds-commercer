@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.softstrem.dscommerce.dtos.ProductDto;
+import com.softstrem.dscommerce.dtos.ProductDTO;
 import com.softstrem.dscommerce.entities.Product;
 import com.softstrem.dscommerce.repositories.ProductRepository;
 import com.softstrem.dscommerce.services.exceptions.DatabaseException;
@@ -23,35 +23,35 @@ public class ProductService {
 	private ProductRepository repository;
 
 	@Transactional(readOnly = true)
-	public ProductDto findById(Long id) {
-		return repository.findById(id).map(product -> new ProductDto(product))
+	public ProductDTO findById(Long id) {
+		return repository.findById(id).map(product -> new ProductDTO(product))
 				.orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado"));
 
 	}
 
 	@Transactional(readOnly = true)
-	public Page<ProductDto> findAll(String name, Pageable pageable) {
+	public Page<ProductDTO> findAll(String name, Pageable pageable) {
 		Page<Product> result = repository.searchByName(name, pageable);
-		return result.map(x -> new ProductDto(x));
+		return result.map(x -> new ProductDTO(x));
 
 	}
 
 	@Transactional
-	public ProductDto insert(ProductDto dto) {
+	public ProductDTO insert(ProductDTO dto) {
 		Product entity = new Product();
 		copyDtoToEntity(dto, entity);
 		entity = repository.save(entity);
-		return new ProductDto(entity);
+		return new ProductDTO(entity);
 
 	}
 
 	@Transactional
-	public ProductDto update(Long id, ProductDto dto) {
+	public ProductDTO update(Long id, ProductDTO dto) {
 		try {
 			Product entity = repository.getReferenceById(id);
 			copyDtoToEntity(dto, entity);
 			entity = repository.save(entity);
-			return new ProductDto(entity);
+			return new ProductDTO(entity);
 			
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Recurso não encontrato");
@@ -73,7 +73,7 @@ public class ProductService {
 
 	}
 
-	private void copyDtoToEntity(ProductDto dto, Product entity) {
+	private void copyDtoToEntity(ProductDTO dto, Product entity) {
 		entity.setName(dto.getName());
 		entity.setDescription(dto.getDescription());
 		entity.setPrice(dto.getPrice());

@@ -2,14 +2,14 @@ package com.softstrem.dscommerce.dtos;
 
 import java.time.Instant;
 
-public class CustomError {
+public class CustomErrorDTO {
 
 	private Instant timestamp;
 	private Integer status;
 	private String messege;
 	private String path;
 
-	public CustomError(Instant timestamp, Integer status, String messege, String path) {
+	public CustomErrorDTO(Instant timestamp, Integer status, String messege, String path) {
 		super();
 		this.timestamp = timestamp;
 		this.status = status;
