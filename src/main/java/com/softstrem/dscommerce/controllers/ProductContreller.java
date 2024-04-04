@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.softstrem.dscommerce.dtos.ProductDTO;
+import com.softstrem.dscommerce.dtos.ProductMinDTO;
 import com.softstrem.dscommerce.services.ProductService;
 
 import jakarta.validation.Valid;
@@ -39,14 +40,20 @@ public class ProductContreller {
 
 	}
 
+	/**
+	 * Retorna uma lista paginada de products
+	 * @param name
+	 * @param pageable
+	 * @return
+	 */
 	@GetMapping
-	public ResponseEntity<Page<ProductDTO>> findAll(
-			@RequestParam(name = "name", defaultValue = "") String name,
-			Pageable pageable) {
-		Page<ProductDTO> dto = service.findAll(name, pageable);
+	public ResponseEntity<Page<ProductMinDTO>> findAll(
+			@RequestParam(name = "name", defaultValue = "") String name, Pageable pageable) {
+		Page<ProductMinDTO> dto = service.findAll(name, pageable);
 		return ResponseEntity.ok(dto);
 	}
 
+	
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	@PostMapping
 	public ResponseEntity<ProductDTO> insert(@Valid @RequestBody ProductDTO dto) {
