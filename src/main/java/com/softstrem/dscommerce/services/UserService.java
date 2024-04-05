@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.softstrem.dscommerce.dtos.UserDTO;
+import com.softstrem.dscommerce.dto.UserDTO;
 import com.softstrem.dscommerce.entities.Role;
 import com.softstrem.dscommerce.entities.User;
 import com.softstrem.dscommerce.projections.UserDetailsProjection;

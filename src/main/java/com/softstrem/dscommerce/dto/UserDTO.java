@@ -1,4 +1,4 @@
-package com.softstrem.dscommerce.dtos;
+package com.softstrem.dscommerce.dto;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

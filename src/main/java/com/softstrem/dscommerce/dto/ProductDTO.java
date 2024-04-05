@@ -1,10 +1,14 @@
-package com.softstrem.dscommerce.dtos;
+package com.softstrem.dscommerce.dto;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.softstrem.dscommerce.entities.Category;
 import com.softstrem.dscommerce.entities.Product;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
@@ -23,9 +27,11 @@ public class ProductDTO {
 	@Positive(message = "O preço deve ser positivo")
 	private BigDecimal price;
 	private String imgUrl;
+	
+	@NotEmpty(message = "Deve ter pelo menos uma categoria")
+	private List<CategoryDTO> categories = new ArrayList<>();
 
 	public ProductDTO(Long id, String name, String description, BigDecimal price, String imgUrl) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -39,6 +45,9 @@ public class ProductDTO {
 		description = entity.getDescription();
 		price = entity.getPrice();
 		imgUrl = entity.getImgUrl();
+		for(Category cat : entity.getCategories()) {
+			categories.add(new CategoryDTO(cat));
+		}
 	}
 
 	public Long getId() {
@@ -61,4 +70,10 @@ public class ProductDTO {
 		return imgUrl;
 	}
 
+	public List<CategoryDTO> getCategories() {
+		return categories;
+	}
+
+	
+	
 }

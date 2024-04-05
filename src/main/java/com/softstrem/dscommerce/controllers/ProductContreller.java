@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.softstrem.dscommerce.dtos.ProductDTO;
-import com.softstrem.dscommerce.dtos.ProductMinDTO;
+import com.softstrem.dscommerce.dto.ProductDTO;
+import com.softstrem.dscommerce.dto.ProductMinDTO;
 import com.softstrem.dscommerce.services.ProductService;
 
 import jakarta.validation.Valid;
