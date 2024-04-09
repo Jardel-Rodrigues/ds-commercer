@@ -44,15 +44,13 @@ public class User implements UserDetails {
 	private List<Order> orders = new ArrayList<>();
 
 	@ManyToMany
-	@JoinTable(name = "tb_user_role",
-			joinColumns = @JoinColumn(name = "user_id"),
-			inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JoinTable(name = "tb_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
-	
+
 	public User() {
-		
+
 	}
-	
+
 	public User(Long id, String name, String email, String phone, LocalDate birthDate, String password) {
 		super();
 		this.id = id;
@@ -114,43 +112,27 @@ public class User implements UserDetails {
 	public List<Order> getOrders() {
 		return orders;
 	}
-	
-	public Set<Role> getRoles(){
-		return roles;	
+
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
 	public void addRole(Role role) {
 		roles.add(role);
 	}
-	
+
 	public boolean hasRole(String roleName) {
-		for(Role role : roles) {
-			if(role.getAuthority().equals(roleName)) {
+		for (Role role : roles) {
+			if (role.getAuthority().equals(roleName)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		return Objects.equals(id, other.id);
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	@Override
@@ -181,6 +163,22 @@ public class User implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }
