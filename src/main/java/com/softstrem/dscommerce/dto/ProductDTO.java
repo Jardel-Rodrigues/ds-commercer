@@ -1,6 +1,5 @@
 package com.softstrem.dscommerce.dto;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,13 +24,13 @@ public class ProductDTO {
 	private String description;
 	
 	@Positive(message = "O preço deve ser positivo")
-	private BigDecimal price;
+	private Double price;
 	private String imgUrl;
 	
 	@NotEmpty(message = "Deve ter pelo menos uma categoria")
 	private List<CategoryDTO> categories = new ArrayList<>();
 
-	public ProductDTO(Long id, String name, String description, BigDecimal price, String imgUrl) {
+	public ProductDTO(Long id, String name, String description, Double price, String imgUrl) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -62,7 +61,7 @@ public class ProductDTO {
 		return description;
 	}
 
-	public BigDecimal getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 

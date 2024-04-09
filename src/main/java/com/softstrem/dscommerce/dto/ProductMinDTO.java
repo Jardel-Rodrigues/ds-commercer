@@ -1,17 +1,15 @@
 package com.softstrem.dscommerce.dto;
 
-import java.math.BigDecimal;
-
 import com.softstrem.dscommerce.entities.Product;
 
 public class ProductMinDTO {
 
 	private Long id;
 	private String name;
-	private BigDecimal price;
+	private Double price;
 	private String imgUrl;
 
-	public ProductMinDTO(Long id, String name, String description, BigDecimal price, String imgUrl) {
+	public ProductMinDTO(Long id, String name, String description, Double price, String imgUrl) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
@@ -33,7 +31,7 @@ public class ProductMinDTO {
 		return name;
 	}
 
-	public BigDecimal getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
