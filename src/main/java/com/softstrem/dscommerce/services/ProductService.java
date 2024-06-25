@@ -1,5 +1,7 @@
 package com.softstrem.dscommerce.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -21,12 +23,15 @@ import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class ProductService {
+	
+	private static final Logger log = LoggerFactory.getLogger(ProductService.class);
 
 	@Autowired
 	private ProductRepository repository;
 
 	@Transactional(readOnly = true)
 	public ProductDTO findById(Long id) {
+		log.info("ID:" + id);
 		return repository.findById(id).map(product -> new ProductDTO(product))
 				.orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado"));
 

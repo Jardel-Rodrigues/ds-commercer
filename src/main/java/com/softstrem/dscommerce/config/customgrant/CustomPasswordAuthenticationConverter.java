@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.lang.Nullable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +23,8 @@ import jakarta.servlet.http.HttpServletRequest;
 
 public class CustomPasswordAuthenticationConverter implements AuthenticationConverter {
 
+	private static final Logger log = LoggerFactory.getLogger(CustomPasswordAuthenticationConverter.class);
+	
 	@Nullable
 	@Override
 	public Authentication convert(HttpServletRequest request) {
